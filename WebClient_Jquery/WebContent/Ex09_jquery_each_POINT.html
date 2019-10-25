@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  JAVA: for(String str : 배열(Collections){})
+			JavaScript: for(let index in Array){ Array[incex] }
+			JaavaScript(Object:json): for(let key in Object){ }
+			console.log("key : "+key+"=" + Object[key]);
+			
+			Jquery : each() 반복구문 
+			
+			Jquery : Ajax 처리 구문 .. 화면 구성 
+			1. $(selector).each(function() {this});
+			2. $(selector).each(function(index){this});   //첨자값을 뽑아온다  0,1번째
+			3. $(selector).each(function(index,element){element});    70%
+			
+			*selector 없는 each()
+			1. $.each(selector,function(){this});
+			2. $.each(selector,function(index){this});
+			3. $.each(selector,function(index,element){element});
+			
+			selector가 json 객체
+			var obj = {name:"홍길동",age:100}
+			$(obj).each(function(key,value)) 
+			
+		*/
+		$(function() {
+			//첫번째 방법
+			$('p').each(function() {
+			//	console.log("this : " + $(this).text()); //함수 세번 호출된다 // p태그 개수만큼 호출된다 >> 재귀함수 >> callback 함수 
+				//this >> p 태그 의미 
+			});
+			//두번째 방법
+			$('p').each(function(index){
+				console.log("index : " + index + " this : " + $(this).text());	
+			//	$(this).attr('id','param-' + index);
+				//속성을 한번에 여러개 줄 수 없나? >> 여러개 >> json (파라미터)  /... 파라미터로 객체를 여러개 쓴다 
+				//파라미터를 제이슨 객체로 써야한다 
+				$(this).attr(
+					{
+						"id" :"param-" + index,  //식별자를 주고 
+						"style" :"color :red"   
+					}	
+				);
+			});
+			//$(this).attr  함수를 쓰면 속성을 강제할 수 있다 그런데 속성의 이름이 똑같으면 구분할 수가 없다 
+			//$(this).attr('id',"param-" + index)
+			//다수의 p 태그 같은 속성을 부여 (id 충돌)
+			//
+			
+			//세번째 방법  *** 가장 많이 쓰고 편한 방법 >> this 안 써도 됨 >> 두번째 파라미터로 요소가 넘어온ㄷ
+			$('p').each(function(index,element) {  //element >> p태그 자체를 의미한다 <p>java</p> 
+				console.log("index : " + index);
+				console.log("element : " + element + "/" + $(element).text());
+				// [object HTMLParagraphElement]		
+			});	
+			$('#btn').click(function() {
+				alert($('#param-1').text());
+			});
+		});
+			/*  응용학습 
+			javascript 
+			var arr = ['사과','배','수박'];
+			var obj = {}
+			객체 배열 
+			var arrobj n= [{},{},{}];
+			
+			
+			*/
+			var array = [
+				{"name":"naver","link":"www.naver.com"},
+				{"name":"daum","link":"www.daum.com"},
+				{"name":"bit","link":"www.bit.com"},
+			];
+			//문제 name 값 ,link 값 출력
+			//$(obj).each(function(){})
+			//3. $(selector).each(function(index,element){element});
+			//element가 받는 값과 자원은 무엇일까 
+			console.log(array);
+			$(array).each(function(index,element){
+			//	console.log(element);  //객체.속성명, 객체['속성명'] 
+			//	console.log(element.name +'/' +element['link'] ); 				
+			});
+			//array는 내부에서 만든 자원 이니깐 굳이  selector를 쓸 필요가 있을까? 
+			//	3. $.each(selector,function(index,element){element});
+			// 태그가 아닌 내부적인 자원은 셀렉터 없는게 낫다 
+			$.each(array,function(index,element){
+			//	console.log("selector 없는 거 " + element.name +'/' +element['link'] ); 	
+			});
+				
+			//두가지 방법 구분하기 
+			// $(selector).each(function(index,element){element});   >> 바디 안에 있는 태그 정보를 썼을 때 
+			//vs  $.each(selector,function(index,element){element});  >> 스크립트 내부에 있는 배열이나 객체를 이용할 때 
+			
+			let board = {
+					values:[
+						{no:1,title:"hello world"},
+						{no:2,title:"java"},
+						{no:3,title:"it's so hard"}
+					],
+					search:"검색"
+			}
+
+			//1. $.each() 사용해서 no값 과 타이틀 값을 출력 
+			
+			$.each(board.values,function(index,element) {  //아예 배열을  selector로 사용하는 방법 
+				console.log(index +"/" + element.no + "/" + element["title"]);
+			});
+			$.each(board,function(key,value) {  
+
+				//values/[object Object],[object Object],[object Object]   >> key값 
+				
+			});
+			//3. each(), no,title, search 값을 출력
+			$.each(board,function(key,value){
+				//value가 텍스트야 배열이야,...
+				//배열인 경우만 돌리도록 
+				console.log("키값 " +key);  //values, search
+				console.log("밸류" + value);   //[object] , 검색 
+				if(typeof(value) == "object"){
+				$.each(value,function(index,element){
+					console.log(index+"/"+ element.no + element.title);
+				});
+				} else {
+					console.log("key : " + key + "value : " + value);
+				} 
+				
+			});
+			
+			
+	</script>
+</head>
+<body>
+	<p>java</p>
+	<p>jsp</p>
+	<p>oracle</p>
+	<input type="button" value="click" id="btn">
+	
+</body>
+</html>

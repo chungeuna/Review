@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+사용시 
+size() > length 변경 
+-->
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<style> 
+.float_center{ 
+   float:center; 
+} 
+.layout{ 
+   margin:10px; 
+   width:700px; 
+} 
+.pocket{ 
+   border:solid 1px #000; 
+   height:300px; 
+   padding:0px; 
+   vertical-align: top; 
+} 
+.dnd{ 
+   width:100%; 
+} 
+.dnd tr{ 
+   height:30px; 
+} 
+.dnd td{ 
+   border-bottom:solid 1px #aaa; 
+} 
+.btn{ 
+   height:20px; 
+   border:solid 2px black; 
+   padding: 5px; 
+   font-weight: bold; 
+   cursor:pointer; 
+} 
+.center{ 
+   text-align: center; 
+} 
+</style> 
+<script type="text/javascript"> 
+//https://api.jquery.com/category/selectors/basic-filter-selectors/
+//조별로 셀렉터 조사해서 올리기
+
+$(document).ready(function(){ 
+   $("#add").click(function(){ 
+      move($("#leftTable"),$("#rightTable")); 
+   }); 
+   $("#del").click(function(){ 
+      move($("#rightTable"),$("#leftTable")); 
+   }); 
+}); 
+function move(from, to) {  // from >> rightTable / to >> leftTable 
+   var target = from.find("tr:has(:checked)");  //$("#rightTable").find
+   console.log(target);
+   //rightTable의 하위요소 중 tr : has(:checked)만 찾는다 
+   //find() vs children() : 비슷한 함수지만 children()은 DOM tree 구조에서 한 단계만 내려간다 
+   //$("tr:has(td)") : 제이쿼리로 table의 td에 접근하는 방법 
+   //find:from하위요소중 특정요소("tr:has(:checked)")를 찾을때 사용한다.
+   //has: checked를 가지고 있는 tr을 선택한다.
+   //ex).find( selector )
+   //has: checked를 가지고 있는 tr을 선택한다.
+   //메소드는 선택한 요소 중에서 전달받은 선택자에 해당하는 요소를 하위 요소로 가지고 있는 요소가 모두 선택된다.
+   //ex)$("li").has("b").css("background-color", "yellow");
+    //ex) $( 'h1' ).has( 'span' )
+   if (target.size() == 0) { 
+      alert("선택된 요소가 없습니다."); 
+      } else { 
+      for ( var i = target.size() - 1; i >= 0; i--) { 
+         var item = target.eq(i);  //문자로 전달된 해당되는 인덱스의 값을 가져오는 것 
+         copy(to, from, item); 
+         //인덱스는 선택된 요소들의 첫번째 요소를 인덱스 0으로 놓고, 앞에서부터 검색된다.
+         //인덱스가 음수인 경우에는 선택한 요소 집합의 맨 마지막 요소를 인덱스 -1로 놓고, 뒤에서부터 검색된다.
+      } 
+      target = from.find("tr:has(:checked)");      
+      target.each(function(i){ //이벤트가 시작되는 dom요소
+         $(this).remove(); //제거 
+      });    
+   } 
+} 
+
+/*
+find() : 어떤 요소의 하위 요소 중 특정 요소를 찾을 때 사용한다.
+ex) $( 'h1' ).find( 'span' );
+	
+has(): 특정 요소를 가지고 있는 요소를 선택할 수 있다. 함수를 사용하면 요소 집합의 범위를 축소할 수 있다. 
+주어지는 선택자에 대해 선택될 요소가 있는지 자식 요소들을 탐색하여 새로운 jQuery 집합을 생성해낸다.
+ex) $( 'h1' ).has( 'span' ) 
+
+remove():선택한 요소를 HTML 문서에서 제거한다.
+ex) $( 'p' ).remove( '.rm' ); 
+ */
+function copy(to, from, item) { //
+   var appended = false; 
+   var targettext = item.find("td").eq(1).text(); 
+   var trs = to.find("tr"); 
+   for ( var i = trs.size() - 1; i >= 0; i--) { 
+      if (trs.eq(i).find("td").eq(1).text() < targettext) { 
+         item.find(":checked").removeAttr("checked"); 
+         console.log(item);
+         trs.eq(i).after(item); 
+         appended = true; 
+         break; 
+      } 
+   } 
+   if (!appended) { 
+      item.find(":checked").removeAttr("checked"); 
+      to.prepend(item); 
+   } 
+   return true; 
+} 
+</script>
+</head>
+<body>
+    <table class="layout float_center">
+        <colgroup>
+            <col width="45%">
+            <col width="10%">
+            <col width="45%">
+        </colgroup>
+        <tr>
+            <td class="pocket center">
+                <table id="leftTable" class="dnd">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test1</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test2</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test4</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test5</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test6</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="center"><span id="add" class="btn">추가</span> <br>
+                <br> <span id="del" class="btn">삭제</span></td>
+            <td class="pocket center">
+                <table id="rightTable" class="dnd">
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

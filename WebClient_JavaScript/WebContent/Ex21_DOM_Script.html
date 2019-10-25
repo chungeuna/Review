@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+	window.onload = function() {  //onload 이벤트 발생시 익명함수 실행 
+	var btnobj =	document.getElementById("btnGetData");
+		btnobj.onclick = function() { //버튼 클릭 시 이벤트 발생하면 익명함수
+			var txtmsg = document.getElementById("txtmessage"); //텍스트박스를 갖고 온다 
+			var str = "";
+			str += "ID : " + txtmsg.getAttribute("id"); //돔트리 형태에서 원하는 속성을 들고온다 
+			str += "\nVALUE : " + txtmsg.getAttribute("value");
+			str += "\nVALUE : " + txtmsg.value;
+			str += "\nLENGTH : " + txtmsg.value.length;
+			console.log(str);
+		}
+		document.getElementById("btnCreate").onclick = function() {
+			var txtname = document.createElement("input");
+			txtname.setAttribute("type", "text");
+			txtname.setAttribute("id", "txtbox");
+			txtname.setAttribute("value", "홍길동");
+			
+			document.body.appendChild(txtname);
+			//
+		}
+	}
+	</script>
+</head>
+<body>
+	<input type="text" id="txtmessage"  value="hello">
+	<input type="button" id="btnGetData" value="getInfo">
+	<hr>
+	<input type="button" value="동적 생성" id="btnCreate">
+</body>
+</html>

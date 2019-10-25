@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>선택자(selector)</title>
+<style type="text/css">
+/* 1.기본 선택자(기존에 존재하는 태그들) ex)p,div
+		ex) p{color:red;} 
+	   2. 다중(group) 선택자 
+	   	ex) p,h1,h2,h {color:blue;}
+	   3. 사용자 정의 선택자 
+	   	ex) .mystyle{color:red;} : 범용적인 방법 
+	   		적용)
+	   		<p class ="mystyle"> </p>
+	   		<p class ="mystyle"> </p>
+	   		#idstyle{color:pink;} : 식별자(구별자) / 페이지당 한개 
+	   		<div id="idstyle"> </div>
+	   	4. 결합 
+	   	p{ color:black; }
+	   	p.one{ border:1px; }
+	   	p.two{ border:5px; }
+	   	적용) 
+	   	<p></p>   ...color:black;
+	   	<p class="one"> </p> ...color:black, border:1px
+	   	<p class="two"> </p> ...color:black, border:5px
+	   	5. [자손], 후손선택자 
+	   	div p{color : green; font-family:"궁서체", "명조체", "광수체";}
+	   	
+	   	
+	   	<div>
+	   		<p>A</p>
+	   		<p>
+	   		  B
+	   		   <p>C</p>
+	   		 </p>  
+	   	</div>
+	   	6. [자식]
+		.parent > p { border : 1px double blue; padding:10px; font-size:15px;} 
+		div > p 
+		
+		7. 속성 선택자 (Attribute > color, font, size)
+		input[type=text] {color:red;} : input 태그인데 타입이 text인 것 
+		input[type=button]{font-size:10px;} : 엘리먼트 안에 들어가는 속성에 대해 필터링할 수 있다 
+		 
+		8. + 인접한 형제 선택자 
+		div + p {
+ 			 background-color: yellow;
+		}
+		9. ~ 일반 형제 선택자 
+		div ~ p {
+ 			 background-color: yellow;
+		}
+		
+		10. 가상 선택자 (hover 존재하지않지만 의미론적으로 해석해준다) /ex) 마우스가 올라가면
+		a.highlight:hover {
+  		color: #ff0000;
+		}   
+		<p><a class="highlight" href="css_syntax.asp">CSS Syntax</a></p>
+		
+		p {
+		  display: none;
+ 		  background-color: yellow;
+		  padding: 20px;
+			}
+
+		div:hover p {
+  		display: block;
+		}
+		<body>
+	<div>Hover over me to show the p element
+ 		 <p>Tada! Here I am!</p>
+	</div>
+			
+			
+	셀렉터[어트리뷰트~=”값”]	지정된 어트리뷰트의 값이 지정된 값을 (공백으로 분리된) 단어로 포함하는 요소를 선택한다.
+	
+	::after	콘텐츠의 뒤에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
+	::before	콘텐츠의 앞에 위치하는 공간을 선택한다. 일반적으로 content 어트리뷰트와 함께 사용된다.
+	*/
+div p {
+	color: green;
+	font-family: "궁서체", "명조체", "광수체";
+}
+
+.parent>p {
+	border: 1px double blue;
+	padding: 10px;
+	font-size: 15px;
+}
+
+input[type=text] {
+	width: 150px;
+	display: block;
+	background-color: yellow;
+}
+
+input[type=button] {
+	width: 100px;
+	background-color: red;
+}
+</style>
+</head>
+<body>
+	<p>나는 스타일이 적용 될까</p>
+	<div>DIV 태그</div>
+	
+	<h3>하위 (자손 ) 선택자</h3>
+	<div>
+		<p>선택자</p>
+		<p>선택자2
+			<p>선택자3</p>
+		</p>
+		<div>
+			<p>선택자4</p>
+		</div>
+	</div>
+	
+	<h3>자식 선택자</h3>
+	<div class="parent">
+	<p>나는 문단 태그입니다</p>
+	<div>
+	 <p>나는 p 태그입니다</p>
+	</div>
+	<p>나는 문단 태그입니다</p>
+	</div>
+	<hr>
+	<input type="text" value="css적용"> 
+	<br>
+	<input type="password" value="css가 적용될까">
+	<br>
+	<input type="button" value="css 적용">
+	<br>
+</body>
+</html>
+
+

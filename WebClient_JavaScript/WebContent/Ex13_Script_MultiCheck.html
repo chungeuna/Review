@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>다중 선택</title>
+	<!-- ?list =java& list=oracle & ..... 
+	
+	 -->
+	 <script type="text/javascript">
+	 	var checkflag = false; //글로벌 변수 //전역변수 (현재페이지에서 사용 가능)
+	 	function checkForm() {
+	 		var list = document.myform.list;
+	 		//list 타입 Array
+	 		console.log(list);
+	 		console.log(list.length);
+	 		if(checkflag == "false") {
+	 			for(var index in list){
+		 			list[index].checked= true;
+		 		}
+	 			checkflag = "true";
+	 			return "[선택해제하기]";
+	 		} else {
+	 			for(var index in list){
+		 			list[index].checked= false;
+		 		}
+	 			checkflag = "false";
+	 			return "[전체선택]";
+	 		}	 		
+	 	}
+	 	function checkForm2(list) {
+	 		console.log(list); //리스트가 가리키는 것 : 모든 input태그 배열
+	 		
+	 	}
+	 </script>
+</head>
+<body>
+	<form action="" name="myform">
+		좋아하는 과목은: <br>
+		<input type="checkbox" name="list" value="java" checked>JAVA<br>
+		<input type="checkbox" name="list" value="oracle">ORACLE<br>
+		<input type="checkbox" name="list" value="html">HTML<br>
+		<input type="checkbox" name="list" value="css">CSS<br>
+		<input type="checkbox" name="list" value="javascript">JAVASCRIPT<br>
+		<input type= "button" value="[전체 선택]" onclick="this.value=checkForm()">
+		<br>
+		<input type= "button" value="[전체 선택]" onclick="this.value=checkForm2(this.form.list)">
+	</form>
+</body>
+</html>

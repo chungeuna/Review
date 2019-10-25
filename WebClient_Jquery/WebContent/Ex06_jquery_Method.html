@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<style type="text/css">
+		.redcolor {color:red}
+		.bluecolor {color:blue}
+		.greencolor {color:green}
+		.whitecolor {color:white}
+	</style>
+	<script type="text/javascript">
+		$(function() {
+			$('td:contains("홍길동")').addClass('redcolor');
+			//addClass 만들어진 css요소에 적용하기 
+			$('td:contains("홍길동")').siblings() 
+			.addClass('bluecolor')  //50,훔치기  >> blue 
+			.parent()		//tr 
+			.find("td:eq(0)")  //0번째 일치하는 것을   //부모 tr태그의 자식 td 중 0번째 >> 홍길동
+			.addClass("greencolor")  //홍길동 >> green 
+			//find filter 찾아서 조건을 가지고 
+			$('#btnclick').on('click',function(){
+				alert('click');
+			});
+			$('#btnclick').on('mouseover',function(){
+				document.getElementById("btnclick").style.backgroundColor="red";
+			}); 
+			
+			$('#btnclick').on('mouseout',function(){
+				document.getElementById("btnclick").style.backgroundColor="white";
+			}); 
+			$('#btnclick').on('click',function() {
+				$('#btnclick').off('click');
+			});
+			$('#stylediv').on(
+					{ mouseover:function() {$('#stylediv').addClass('greencolor')},
+					mouseout:function() {
+						$('#stylediv').removeClass('greencolor');
+						$('#stylediv').addClass('bluecolor');
+					}
+					//green,blue 둘다 잡힌다, 없애질 않음 
+					}
+			);
+		});
+		//contains >> text가 홍길동인 것을 찾는다 
+		//stylediv라는 id 가진 div 2개 이벤트 걸기 
+		// mouseover >> greencolor
+		// mouseout >> bluecolor
+	/*
+	addClass() - Adds one or more classes to the selected elements
+	removeClass() - Removes one or more classes from the selected elements
+	toggleClass() - Toggles between adding/removing classes from the selected elements
+	css() - Sets or returns the style attribute
+	*/
+	
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>이름</td>
+			<td>나이</td>
+			<td>취미</td>
+		</tr>
+		<tr>
+			<td>홍길동</td>
+			<td>50</td>
+			<td>훔치기</td>
+		</tr>
+		<tr>
+			<td>이순신</td>
+			<td>10</td>
+			<td>싸움</td>
+		</tr>
+		<tr>
+			<td>학생</td>
+			<td>20</td>
+			<td>잠자기</td>
+		</tr>
+	</table>
+	<hr>
+	<h3>이벤트</h3>
+	<a href="http://www.naver.com" target="_blank">네이버 바로가기</a>
+	<hr>
+	<div id="btnclick">click</div>
+	<div id="btnclick2">click2</div>
+	<div id="stylediv"> 스타일 적용</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>유효성 검증</title>
+	<script type="text/javascript">
+	 /* 유효성 검증 
+	 	1. Client 서버전송 >> 서버 검증 >> 검증 여부 Client한테 보낸다 (ID 중복확인)
+	 	2. Client에서 검증 >> 검증 완료 시 서버 전송 >> 서버 반영여부 Client 보낸다 
+	 	(최소한서버로 보내는 작업을 줄여야한다 roundtrip/비연결 기반)
+	 	최대한 할 수 있는 부분은 2번... 서버 전송 횟수를 줄인다 
+		
+	 	2번 작업>> 자바스크립트가 수행 / 유효성 체크 
+	 	
+	 	******name = "textuserid" 네임 속성이 없으면 서버가 값을 받지 못한다 
+	 */
+	 function send() {
+	 		//var element = document.forms[0].elements[0].value;
+	 		//form 이라는 속성이 네임 속성을 갖고있다면 
+	 		var inputuserid = document.loginform.textuserid; //input 태그 전체 
+	 		//이 변수가 바라보는 자원은 이 태그 전체이다 >>내가 원하는 것은 값 
+	 	console.log(inputuserid);
+	 	console.log(inputuserid.value);
+	 	
+	 	//DOM script를 쓸 수 있다 id란 속성을 붙이면 메모리에 올라간 것을 찾을 수 있다 
+	 	var userpwd=document.getElementById("txtpwd");
+	 	console.log(userpwd); 
+	 	console.log(userpwd.value); //입력한 값 
+	 	
+	 	//유효성 검증 
+	 	// 널값이나 3미만 10 초과면 다시 입력하게한다 
+	 	if(inputuserid.value == "" || !(inputuserid.value.length >=3 && inputuserid.value.length <=10)){
+	 		alert("다시 입력해");
+	 	//	document.loginform.textuserid.focus(); //같은 코드 
+	 		inputuserid.focus();
+	 		inputuserid.select();  //블럭을 잡아준다 (드래그)
+	 	}else {
+	 		alert("검증 완료");	 
+	 		//서버로 전송하는 코드 
+	 		document.loginform.action = "Ex09_login.jsp";  //로그인폼에서 액션 속성에 접근할 수 있다 
+	 		document.loginform.submit(); // form >> submit() 내장 >> 호출 
+	 		
+	 	}
+	 }
+
+	</script>
+</head>
+<body>
+ 	<form action="" method="get" name="loginform">
+ 		ID:<input type="text" name="textuserid"><br>
+ 		PWD:<input type="password"	name="textpwd" id="txtpwd"> 
+ 		<!-- input   
+ 		type="submit"
+ 		type="image"
+ 		type="button" 별도의 함수가 필요(함수 내부 submit) -->
+ 		<input type="button" value= "전송" onclick="send()">
+ 	</form>
+</body>
+</html>

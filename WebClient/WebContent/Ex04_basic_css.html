@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type = "text/css">
+/* css의 적용은 기존에 존재하는 태그(요소)만 가능할까 
+p{}
+h3{}
+
+h1,h2,h3 자원들 >> 선택자(selector)
+*선택자*
+1. 기존에 있는 태그들
+2. . >> class 반영 
+3. # >> id로 반영 
+*/
+h1,h2,h3 {color:red;} /*다중 선택자*/
+#kglim{color:gold;} /* #만든  ..id */
+.hong {color:blue;} /* .만든 ... class */
+p{text-align:center;}
+/*<a href> 존재하지만 link,visited,hover,active는 존재하지 않는다 의미만 존재: 가상 클래스 선택자 (a: link)
+*/
+a:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:visited {
+  color: purple;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+<h1> 선택자1</h1>
+<h2> 선택자2</h2>
+
+<p id="kglim">id라는 속성을 사용해서 css 반영 </p>
+<p class="hong">class라는 속성을 사용해서 css 반영 </p>
+<!--사용자 정의 :id, class 선택자 사용해서 
+css,javascript,jquery에서 활용도 100% -->
+<a href="http://president.go.kr"> 청와대 바로가기 
+</a>
+<img src = "https://www.w3schools.com/images/w3schools_green.jpg"> 
+<!-- 사이트에서 이미지를 갖고오기  -->
+
+<!-- Use the CSS float property to let the image float -->
+</body>
+</html>

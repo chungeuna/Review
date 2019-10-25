@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>내장 함수</title>
+	<script type="text/javascript">
+	var myTime= window.setInterval(function() { //익명함수, 1회성 (재사용x)
+			// javascript도 다양한 객체를 가진다 (Date 객체) 
+			// Date d = new Date(); JAVA
+			var d = new Date(); //var 타입으로 받는다 
+			var t = d.toLocaleTimeString(); // 문자형태로 시간을 준다 
+			//DOM script (메모리 상에 만들어진 HTML에 접근) 
+			document.getElementById("time").innerHTML = t;
+			//트리 형태로 메모리에 올린 것을 dom이라고 한다 Document Object Model
+			//
+		}, 1000); // 여기있는 함수: 1초마다 익명함수를 실행해라 (재귀호출) /
+		
+		function myTimeStop(){
+			window.clearInterval(myTime);  //전역변수 myTime 인터벌 함수 
+		}
+	//	function aa(){}
+	</script>
+</head>
+<body>
+	<p id="time"></p>
+	<button onclick="myTimeStop()">Stop time</button>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>이벤트 & load</title>
+	<script type="text/javascript">
+	/* 
+	onload 이벤트 발생 시점 : body 태그 안에 있는 모든 요소(태그) 브라우저에 loading되고 나서 발생 
+	<body onload=call()> 
+	window.onload = call() 코드도 가능 
+	*/
+	window.onload = function() {  //함수의 이름이 없다 /익명함수 / 재사용하지 않을 때 (onload만 쓴다)
+		//페이지에 있는 모든 요소가 브라우저에 로딩된 후에 함수가 자동 실행된다 
+		//body 태그를 제어할 수 있다 
+		var out ="";
+		out += "<ul>";
+			out += "<li>javascript</li>";
+			out += "<li>jquery</li>";
+			out += "<li>vue</li>";
+		out += "</ul>";
+		document.body.innerHTML = out; // 덮어버린다 
+		
+		var header = document.createElement("h1");
+		//<h1> </h1>
+		var textnode = document.createTextNode("hello");
+		//hello 
+	
+		header.appendChild(textnode);
+		//<h1> hello </h1>
+		document.body.appendChild(header);
+		
+		//img 태그를 생성하고 src라는 속성을 만들고 body 자식으로 append 해라 
+		var img = document.createElement("img"); //<img>
+		img.setAttribute("src", "images/Desert.jpg"); //<img src ="images/Desert.jpg">
+		img.setAttribute("width", '100');
+		img.setAttribute("height", '100');
+		document.body.appendChild(img);
+		//기존에 있는 태그 뒤쪽에 붙는다 
+		//*** 태그를 만들어서 원하는 위치에 넣을 수 있다 (페이지가 로딩되고 난 후에 실행이 된다) 
+		//버튼을 클릭하면 텍스트박스 여러개 만들 수 있다 
+		
+}
+	</script>
+</head>
+<body>
+	HELLO WORLD
+</body>
+</html>

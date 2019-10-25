@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>홈페이지 구성 화면 만들기</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+* {
+	text-align: center;
+}
+
+.left {
+	background-color: #e5e5e5;
+	float: left;
+	width: 15%;
+	margin-top: 7px;
+	/*display: block;*/
+	height: 500px;
+}
+.left a {
+  background-color:#e5e5e5;
+  padding:8px;
+  margin-top:7px;
+  display:block;
+  width:80%;
+  color:black;
+}
+.contents {
+	background-color: #e5e5e5;
+	margin-top: 7px;
+	float: left;
+	width: 69%;
+	height: 500px;
+	margin-left: 0.5%;
+	margin-right: 0.5%;
+}
+
+.right {
+	background-color: #e5e5e5;
+	float: left;
+	width: 15%;
+	margin-top: 7px;
+	height: 500px;
+}
+@media only screen and (max-width:620px) {
+  .left, .contents, .right {
+    width:100%;
+  }
+  
+</style>
+</head>
+<body>
+	<div class="header" style="background-color: #e5e5e5; padding: 15px;">
+		<h3>Header</h3>
+	</div>
+	<div class="nav" style="background-color: #e5e5e5; padding: 10px;margin-top:7px;text-align:left;">
+			<a href="#" >About</a>
+  	  		<a href="#" >Contact</a>
+    		<a href="#" >News</a>
+	</div>
+	<div style="overflow: auto;">
+		<div class="left">
+			<h3>Left Side Bar</h3>
+			<a href="#">Menu1</a>
+  	  		<a href="#">Menu2</a>
+    		<a href="#">Menu3</a>
+   			<a href="#">Menu4</a>
+		</div>
+		<div class="contents">
+			<h3>Contents</h3>
+		</div>
+		<div class="right">
+			<h3>Right Side Bar</h3>
+		</div>
+	</div>
+	<div class="footer" style="background-color: #e5e5e5; margin-top: 7px; padding: 15px;">
+		<h3>Footer</h3>
+	</div>
+</body>
+</html>

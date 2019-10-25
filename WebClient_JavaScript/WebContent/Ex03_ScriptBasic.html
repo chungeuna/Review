@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM을 사용하는 자바스크립트</title>
+<script type="text/javascript">
+	function print(){
+		var element = document.getElementById("demo");
+		console.log(element);
+		element.innerHTML = "배고프다";
+	}
+	/* 문서 안에서 이 함수를 이용하면 엘리먼트의 아이디 값을 얻어 온단 뜻 
+	element는 p태그 내용이 있다 
+	*/
+</script>
+</head>
+<body>
+ <button onclick="print()">클릭하세요</button>
+ <p id="demo">demo p 태그를 구분하는 식별자</p>
+</body>
+</html>

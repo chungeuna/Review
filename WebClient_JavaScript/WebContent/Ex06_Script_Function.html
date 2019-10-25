@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>사용자 정의 함수 : 내장 함수 </title>
+	<script type="text/javascript">
+	//java : public void print(){}
+	//java : public String print(){}
+	//java : public int print(int num, int num2) {return num + num2;}
+	
+	//javaScript
+	//function 함수이름() {}
+	//void, 리턴타입 x -> 함수이름만 쓰면 끝 
+	//함수는 반드시 *호출*에 의해서만 실행된다 
+	function callConfirm() { // 사용자 정의 함수 
+		if(window.confirm("작업내용")) {  //confirm 내장함수 /이미 브라우저가 가지고 있는 함수 //확인 취소버튼이 만들어져있음 
+			window.alert("삭제합니다"); //true값이 리턴 
+		}else {
+			alert("취소합니다"); //만들어진 내장함수 (윈도우 객체가 가지고 있다) 
+		} //false값 리턴 
+	}  //confirm 창 / 확인,취소 창이 뜬다 
+	function showPopup() { //open() 내장함수 
+		window.open("Ex06_popup.html","zipcode","width=200,height=200");
+		//https://www.w3schools.com/jsref/met_win_open.asp
+		//window.open(URL,name,specs,replace)
+		//window.close> close the correct window
+		//spec(옵션)에 적용되는 브라우저마다 지원여부가 다르다 그래서 확인해야한다 
+		//specs: 주소창,창의 크기 옵션 
+	}
+	function myFunction() { //open() 내장함수 
+		var mywindow = window.open("Ex06_popup.html","zipcode","width=200,height=200"); //띄워진 창을 객체로 본다 
+		//마이윈도우라는 변수는 현재 띄워져있는 창을 가리킨다 
+		mywindow.document.write("<p>this is 'MsgWindow'<\p>");
+	}
+	//java: public String goUrlTime(String url){ return ""}
+	function goUrlTime(url) {  //파라미터의 변수명만 쓴다 (url,a,b) /함수의 파라미터는 타입을 갖지 않는다 
+		//return 써도 되고 안써도 된다 
+		window.setTimeout("location.href= '" +url + "'",3000);   //setTimeout 많이 쓴다 
+		//location.href="http:www.daum.net" 이 코드가 실행되면 특정 url로 이동 
+		//3초뒤에 실행된다 첫번째 파라미터가 갖고있는 것을 실행한다/ 다음주소로 이동해라 
+		//우리 사이트는 공사중입니다 잠시후 다른 사이트로 이동합니다 
+		
+	}
+	//function 함수이름(a,b,c,d,e){} 
+	function myfun(a,b){
+		return a + b;
+	}
+	var result = myfun(100,200);
+	console.log("myfun() :" + result); //스크립트 내부에서 함수 호출은 이렇게 
+	//익명함수 (함수의 주소를 리턴할 수 있다/ 체인지컬러가 함수를 가리킴 )
+	changeColor = function(){ //원래 function 함수이름()
+		window.document.bgColor="silver";
+		window.document.fgColor="red"; //글자색깔 
+	}
+	</script>
+</head>
+<body>
+	<h3>내장함수와 사용자 정의 함수 사용하기</h3>  <!--on~ 사건 /함수는 행위   -->
+	<button onclick="callConfirm()">클릭 사건 발생(함수 호출)</button>
+	<br>
+	<button onclick="showPopup()">팝업창</button>
+	<br>
+	<button onclick="myFunction()">팝업 객체</button>
+	<br>
+	<button onclick="goUrlTime('http://www.daum.net')"> 다음으로 가기</button>
+	<br>
+	<button onclick="changeColor()">익명함수</button>
+	<br>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">	
+		var name = ""; //글로벌 변수(모든 함수에서 사용할 수 있다//현재 페이지 내에서 )
+		var email = "";
+		function initValue(frm) {
+			name = frm.username.value;
+			email = frm.checkmail.checked;
+		}
+		
+		function copySend(frm){
+			console.log(frm); //form 전체 
+			console.log(frm.username.value);
+			console.log(frm.checkmail.checked); //checked: 인풋 태그가 체크되었는지 여부 
+			//<input type="checkbox" 판단 
+			if(frm.copy.checked){  //선택되었다면 true 라면 
+				initValue(frm); //글로벌변수에 원하는 값이 들어간다 
+				frm.copyname.value=name; //전역변수 
+				frm.copymail.checked= email; 
+			}else { //체크 되지 않았다면 
+				alert("선택해지");
+				frm.copyname.value="";
+				frm.copymail.checked=false;
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>주문정보</legend>
+			이름:<input type="text"     name="username"><br>
+			    <input type="checkbox" name="checkmail">배송정보 Email수신<br>
+			    <hr>
+			    <input type="checkbox" name="copy" onclick="copySend(form)">
+			    주문자 정보와 배송지 정보 동일
+		</fieldset>
+		<hr>
+		<fieldset>
+			<legend>배송지 정보</legend>
+			이름:<input type="text"     name="copyname"><br>
+			    <input type="checkbox" name="copymail">배송정보 Email수신<br>
+		</fieldset>
+	</form>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var menode;
+			menode = document.getElementById("me");
+			menode.style.backgroundColor="yellow"; //style= 
+			var parentnode = menode.parentNode; //body
+			parentnode.style.backgroundColor="skyblue";
+			
+			var grandnode = parentnode.parentNode;  //html 
+			grandnode.style.backgroundColor="green";
+			
+			var my = document.getElementById("mychild");
+			console.log(my);
+			console.log(my.firstChild.nodeName); //노드네임= 태그의 이름  LI 			
+			console.log(my.firstChild.innerText); //li, div , p 는 value값이 없다 --> innderText, innerHTML 사용 
+			//AA
+			console.log(my.firstChild.nextSibling.innerText); //중간 값을 잡을 수 없다 //계층트리 구조이기 때문에 가능하다 
+			console.log(my.childNodes);
+			console.log(my.childNodes.length);
+			console.log(my.lastChild.innerText);
+			
+			/*
+			for(var index in my.childNodes){  //노드들이 다른 정보도 갖고있어서 .. length도 잡고 
+				//노드들 0,1,2뿐만 아니라 // 배열이 갖고있는 내부적인 속성들 
+				var text = my.childNodes[index].innerText;
+				console.log(index);
+				console.log("text : " + text);
+			}
+			*/
+			//인덱스 값을 확인하자 
+			
+			for (var i = 0; i < my.childNodes.length; i++){
+				console.log(i);
+				var text = my.childNodes[i].innerText;
+				console.log("text : " + text);
+			}
+			
+			//document.getElementById("myBtn").onclick = displayDate;
+			//displayDate(); 
+			//
+		}
+	</script>
+</head>
+<body>
+<div>A</div><div>B</div><div id="me">C</div><div>D</div><div>E</div>
+<ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+</body>
+</html>
+

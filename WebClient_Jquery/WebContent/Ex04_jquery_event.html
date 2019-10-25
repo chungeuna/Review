@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+  /*		Mouse Events	Keyboard Events	Form Events	Document/Window Events
+			click			keypress	submit	load
+			dblclick		keydown		change	resize
+			mouseenter		keyup		focus	scroll
+			mouseleave	 	blur		unload	
+	*/
+	$(document).ready(function() {  
+		$('#btncopy').click(function(){
+			//let data = $('#txtuserid').val();
+			//$('#txtcopyuserid').val(data);
+			$('#txtcopyuserid').val($('#txtuserid').val());
+		});
+		//onChange  >> change 
+		//<input> >> value : <p></p>,<div>값</div> >> text
+		//val() (get 읽거나 set 쓰거나) text() (getter,setter)
+	 $('#select_hobby').change(function() {
+		let text = $(':selected').text(); //이벤트가 발생하면 그 중에서 선택되어진 option 태그의 텍스트 값을 가지고 와라 
+		//바디 안에 셀렉트 태그가 하나만 있어야한다  
+		//
+		// 아이디가 있기 때문에 셀렉트 태그가 여러개 있어도 사용 가능하다 
+		let text2 = $('#select_hobby option:selected').text();
+		let val =  $('#select_hobby').val();  //값이 없으면 text 값을 value로 본다 
+		 $('#txtselect').val(text + "/" + text2 + "/" + val);
+		 
+	 });
+		/*
+	$('#txtpwd2').keyup(function() {
+		//let input = $('#txtpwd2').val();
+		//let pwdchk =$('#txtpwd2').val( $('#txtpwd').val());
+		if($('#txtpwd2').val() == $('#txtpwd2').val( $('#txtpwd').val())) {
+			$('#message').text("암호가 일치합니다");
+		}else {
+			$('#message').text("암호가 일치하지 않습니다");
+		}
+		
+	});
+		
+	*/
+		//txtpwd2 >> keyup 이벤트 되었을 때 처음에 입력한 값이랑 비교해서 
+		//암호의 값이 같으면 div태그 text에 암호가 일치합니다 
+		//암호의 값이 같지 않으면 암호가 일치하지 않습니다 
+		
+	$('#txtpwd2').keyup(function() {
+		if($('#txtpwd').val() == $('#txtpwd2').val()){
+			$('#message').text("암호가 일치~~~");
+		}else {
+			$('#message').text("암호가 일치 안해요~~");
+		}
+	});
+	$('input').focus(function() {
+		$(this).css('background-color',"gray");
+		//this를 넣으면 제이쿼리가 갖고있는 함수를 적용할 수 있다
+		// 포커스가 있는 인풋태그 // 현재 포커스를 갖고 있는 인풋 태그 
+		//현재 커서가 머무르는 곳 
+		//스타일을 적용하겠다 //
+	});
+	$('input').blur(function() {
+		$(this).css('background-color',"white");
+
+	});	
+	
+	//하나의 이벤트가 함수를 여러개(또는 두개) 가질 수 있다 
+	$('p').hover(function(Event) {   //마우스가 올라갈 때 
+		$(this).css('background-color',"yellow");
+	}, function(Event) {  //마우스가 떠날 때 
+		$(this).css('background-color',"pink");
+	});
+	
+	
+	});
+	</script>
+</head>
+<body>
+		<p>Jquery hover(mouseover,mouseleave)</p> 
+		ID:<input type="text" id="txtuserid">
+		<hr>
+		<input type="button" id="btncopy" value="copy">
+		<hr>
+		copyID: <input type="text" id="txtcopyuserid">
+		<hr>
+		<select id="select_hobby"> 
+			<option value="JAVA">java</option>
+			<option >script</option>
+			<option >jdbc</option>
+		</select>
+		<br> 
+		<input type="text" id="txtselect">
+		<hr>
+		<table style="border:1px solid red;">
+			<tr>
+			<td>암호</td>
+			<td> 
+				<input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+			</tr>
+			<td>암호확인</td>
+			<td> 
+				<input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+			</tr>
+		</table>
+		<div id="message" style="color:red"></div>
+		
+</body>
+</html>

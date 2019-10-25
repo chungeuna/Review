@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Array</title>
+	<script type="text/javascript">
+		//javascript의 배열은 정적 + collection
+		//java int[] arr = {10,20,30}; 고정배열 
+		//java Collection >> ArrayList list = new ArrayList();
+		//list.add()    list.get()
+
+		var array = ['포도','사과'];
+		document.write(array.toString() +"<br>"); 
+		document.write(array + "<br> toString() default <br>");
+		
+		for(var i = 0; i<array.length;i++){
+			document.write(array[i] +"<br>");
+		}
+		
+		//동적 기능 : 
+		//array[0] >> 포도  array[1] >> 사과 
+		array[2]="바나나"; //동적
+		document.write(array.toString() +"/" + array.length +"<br>"); 
+		
+		array[10] = "애플망고";
+		document.write(array.toString() +"/" + array.length +"<br>"); 
+		document.write(array[9] +"/" + "<br>"); //undefined 공간은 있지만 정의된 것이 없다 
+		array[9]="배";
+		
+		
+		var array2 =["one","two","three"];
+		document.write(array2.length+ "<br>"); 
+		
+		array2.length = 2;  //강제로 length를 줄이는 건 가능하지만 위험하다 
+		for(var index in array2){
+			document.write(array2[index] + "<br>"); 
+		}
+		//
+		array2.length = 4;
+		document.write(array2.toString() +"/" + array2.length +"<br>"); 
+		document.write(array2[2]+"<br>");
+		//POINT 
+		//핵심: 
+		array2.push(4);
+		document.write(array2.toString()+"<br>");
+		//one,two,,,4 
+		//비어있는 공간에 들어가는 것이 아니라 마지막 공간에 들어간다 
+		document.write(array2.pop()+"<br>"); //4
+		document.write(array2.pop()+"<br>"); // undefined 
+		
+		//배열 선언 시에는 ...
+		var list = [];
+		list.push("A");
+		list.push("B");
+		//구글 맵에서 사용할 수 있다 
+
+		document.write(list.pop()+"<br>");
+		
+	</script>
+</head>
+<body>
+
+</body>
+</html>

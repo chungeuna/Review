@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	/* When a web page is loaded, the browser creates a Document Object Model of the page.
+	   The HTML DOM model is constructed as a tree of Objects:
+		로드되었을 때 브라우저는 dom 페이지를 만든다 
+		돔 모델은 객체 형태의 트리구조로 만들어진다 
+		- 돔 모델로 할 수 있는 작업들 -
+		JavaScript can change all the HTML elements in the page
+		JavaScript can change all the HTML attributes in the page
+		JavaScript can change all the CSS styles in the page
+		JavaScript can remove existing HTML elements and attributes
+		JavaScript can add new HTML elements and attributes
+		JavaScript can react to all existing HTML events in the page
+		JavaScript can create new HTML events in the page
+		
+		id="demo" 같은  페이지 같은 아이디 이름을 가지면 안된다
+		id="demo2"  
+	*/
+	</script>
+	
+</head>
+<body>
+	<div id="demo">
+		첫번째 요소
+	</div>
+	<div id="demo">
+		두번째 요소 (계층 트리 형태 첫번째 id=demo 찾으면 stop)
+	</div>
+</body>
+	<script type="text/javascript">
+		var ele_dev = document.getElementById("demo");
+		console.log(ele_dev); //원칙적으로 똑같은 id가 페이지에 있으면 안된다 
+		//블럭태그는 value가 없다 
+		ele_dev.innerHTML = "<b>Hello world</b>";
+		//이걸 위에 쓰면 에러가 뜬다 
+		
+	</script>
+</html>

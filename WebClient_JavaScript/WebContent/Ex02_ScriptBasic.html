@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//Javascript 해석 >> 결과 >> 출력 >> 웹 브라우저 
+	//웹브라우저(해석기 + 다양한 API(객체: 내장객체)
+	//window 내장객체 (웹 브라우저 ... 사용)
+	//window 객체 생략
+	//
+	window.document.write("방가방가<br>"); //브라우저가 태그 해석 
+	document.write("window 객체는 생략 가능<br>");
+
+	console.log(10 + 10);
+	console.log("디버깅, 결과 확인, 오류 메시지 확인");
+
+	document.write("<b>Hello World</b><br>");
+	document.write('<table border="1">');
+	document.write('<tr><td>AA</td><td>BB</td></tr>');
+	document.write('</table>');
+
+	var num; // 타입을 정의하지 않아요  //let도 쓴다 
+	num = 100; //값을 갖는 시점에 타입이 설정 
+	console.log(typeof (num)); //undefined  ...number
+
+	/*var element = window.document.forms[0].elements[0];
+	alert(element);*/
+	/* 자바스크립트는 한줄씩 읽기 때문에*/
+	/*cannot read property
+	페이지에 있는 코드가 순차적으로 실행 ... 이 코드의 문제점은 form이 만들어지기 전에 read하려고 시도...
+	자바스크립트는 *순서*가 중요하다 
+	
+	 */
+	function data() {
+		var element = window.document.forms[0].elements[0];
+		alert(element);
+	}
+	/*함수코드는 건너뛰고 호출될 때 실행된다 */
+</script>
+</head>
+<body>
+
+	<form action="#" method="get" name="myform">
+		ID: <input type="text" name="userid" value="hongaaa"> <br>
+		PWD: <input type="password" name="pwd" value="1111"><br>
+		<input type="submit" value="전송">
+	</form>
+	<input type="button" value="클릭해봐" onclick="data()">;
+
+</body>
+<script type="text/javascript">
+	/*스크립트는 어디서나 만들 수 있다*/
+	/* form 태그가 생성된 후... */
+	var element = window.document.forms[0].elements[0];
+	//alert(element);  //[object HTMLInputElement]
+	console.log(element);
+	console.log(element.value);
+	console.log(element.value.length);
+	/*form 정보를 읽을 수 있다*/
+	//form 태그가 자신의 이름을 갖고 있다
+	//window.document.폼이름.요소이름
+	//window.document.폼이름.요소이름.값 
+	var ele = window.document.myform.userid;
+	//ele라는 변수는 태그 <input type="text" name="userid" value="hong"> 정보를 가진다 
+	console.log("ele : "+ ele );
+	console.log("input userid:" + ele.value);
+	
+	var val = window.document.myform.userid.value;
+	console.log("val: " + val);
+	
+	console.log(typeof(val));
+	if(val.length < 5) {
+		alert("다시 입력해");
+		ele.value="";
+	}
+	
+</script>
+</html>
