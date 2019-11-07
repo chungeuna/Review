@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#btn').click(function() { //data: jsp? name=kglim&pwd=1004  물음표 뒤에 있는 것이 data 
+										//콜백함수
+				//권장하는 방법은 아니다 						
+				/*
+				let name = $('#name').val();
+				let pwd = $('#pwd').val();
+				let param = 'name=' + name + "&pwd=" + pwd;
+				$.post('Ex04_Server.jsp',param,function(data) { //data >> 응답된 데이터 
+					$('#message').html(data); //파라미터 만드는 방법 
+					
+				}); */
+				//권장방법: 두번째 파라미터 설정은 **제이슨 객체**로 
+				$.post('Ex04_Server.jsp',{"name":  $('#name').val(), "pwd" : $('#pwd').val()}
+					,function(data) { //data >> 응답된 데이터 
+					$('#message').html(data); //파라미터 만드는 방법 
+					
+				});
+				
+			});
+		});
+	</script>
+</head>
+<body>
+	이름: <input type="text" id="name"> <br>
+	비번: <input type="text" id="pwd"> <br>
+	<input type="button" id="btn" value="비동기전송">
+	<hr>
+	<div id="message"> </div>
+</body>
+</html>

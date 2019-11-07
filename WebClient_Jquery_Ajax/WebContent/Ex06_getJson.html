@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+/*Description: Load JSON-encoded data from the server using a GET HTTP request.
+jQuery.getJSON( url [, data ] [, success ] )
+[url]
+Type: String
+A string containing the URL to which the request is sent.
+[data]
+Type: PlainObject or String
+A plain object or string that is sent to the server with the request.
+[success]
+Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
+A callback function that is executed if the request succeeds.
+ 
+default: dataType: json데이터 
+ */
+$(function() {
+	$('#btn .btnload').click(function() { //id가 btn의 자손들 중에 클래스 이름이 btnload인 것 골라라 
+		$.getJSON("Ex05_Json.json",function(data) {  //data : jsonarray 
+			//{}{}{}{} 객체 4개 
+			//테이블 만들고 서버 데이터를 테이블 td에 넣어서 dispay에  append 		
+			let table = "<table border =1>";
+			table += "<tr><th>name</th><th>num</th></tr>";
+			$.each(data,function(index,obj) {
+				//1.객체.속성명
+				//2.객체 ["속성명"]
+				table += "<tr><td>" + obj.name + "</td>";
+				table += "<td>" +obj.num + "</td>" + "</tr>";
+				
+			});
+			table += "</table>";
+			$('#display').html(table);
+		});
+	});
+});
+</script>
+</head>
+<body>
+	<div id="btn"> 
+		<div class="btnload"> JSON DATA LOAD </div>
+	</div>
+	<div id="display"> </div>
+</body>
+</html>

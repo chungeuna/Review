@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+		/* 
+		 1. XMLHttpRequest 객체 얻기
+  		 2. onreadystatechange 이벤트 핸들러 구현 (함수 (callback))
+  		 3. 요청 정보 ( open() )
+  	     4. 요청 보내기 (send() )
+         5. 응답 처리 (Text(JSON), xml )
+		
+		*/
+		/*
+		var httpReq = null;
+		
+		function getInstance(){
+		   if(window.XMLHttpRequest){
+			   httpReq = new XMLHttpRequest(); //모든 브라우져 > XMLHttpRequest
+		   }else if(window.ActiveXObject){
+			   httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		   }else{
+		    throw new Error("AJAX 지원하지 않습니다");
+		   }
+		   return httpReq;
+		}
+		
+		function HandlerStateChange(){
+			//alert(httpReq.readyState)
+			if(httpReq.readyState == 4){ 
+				if(httpReq.status >= 200 && httpReq.status < 300){
+				//	document.getElementById("txtdata").innerHTML = httpReq.responseText;
+				document.getElementById("txtdata").innerHTML="";
+					var data = JSON.parse(httpReq.responseText);
+					var row = data.FemailSafetyCustodyBox[1].row;
+				for (var index in row){	
+
+			    document.getElementById("txtdata").innerHTML += "<tr><td>" + row[index].FACLT_NM+"</td><td>"
+			    +row[index].REFINE_ROADNM_ADDR+"</td><td>"+row[index].SPACE_CNT_INFO 
+			    +"</td><td>"+row[index].DATA_STD_DE + "</td></tr>";
+				}
+				}
+			}
+		}
+		
+		function sendData(word){
+			httpReq = getInstance();
+			httpReq.onreadystatechange = HandlerStateChange; //(x)
+			let city = document.getElementById("box").value;
+	        httpReq.open("POST", "https://openapi.gg.go.kr/FemailSafetyCustodyBox?Key=a5a71c6d047247aeb1c3d1465192c52b&Type=json&pIndex=1&pSize=1000&SIGUN_NM="+city);//준비  jsp?id=0  //폼태그 준비 >> 오픈 
+	        httpReq.send();    
+		}
+		*/
+		/*
+        $(function() {
+        	$('#box').change(function() {
+        		var api = "https://openapi.gg.go.kr/FemailSafetyCustodyBox?Key=a5a71c6d047247aeb1c3d1465192c52b&Type=json&pIndex=1&pSize=1000&SIGUN_NM=";
+        		$.getJSON(api,function(data,textStatus,xhr){
+        			console.log(data.FemailSafetyCustodyBox[1].row);
+        	     
+        			document.getElementById("txtdata").innerHTML="";
+					var row = data.FemailSafetyCustodyBox[1].row;
+				for (var index in row){	
+				if($('#box option:selected').val() == ((row[index].SIGUN_NM))){  
+				
+				let boxsize=row[index].SPACE_CNT_INFO.replace("01/", "소형:").replace("01/", "소형:").replace("02/",
+                "중형:").replace("03/", "중소형:").replace("04/", "제어부:").replace("05/", "구급함:").replace("+", " & ")
+                .replace("+", " & ").replace("+", " & ").replace("+", " & ");
+				
+			    document.getElementById("txtdata").innerHTML += "<tr><td>" + row[index].FACLT_NM+"</td><td>"
+			    +row[index].REFINE_ROADNM_ADDR+"</td><td>"+boxsize 
+			    +"</td><td>"+row[index].DATA_STD_DE + "</td></tr>";
+				}
+        		}
+        		});
+        		*/
+        		//
+        $(function() {
+        	 $('#box').change(function() {
+        		$.ajax({
+        			url:"https://openapi.gg.go.kr/FemailSafetyCustodyBox?Key=a5a71c6d047247aeb1c3d1465192c52b&Type=json&pIndex=1&pSize=1000&SIGUN_NM=",
+        		    type:"POST",
+        		    dataType:"json",
+        		    success :function(data){
+            		document.getElementById("txtdata").innerHTML="";
+    				var row = data.FemailSafetyCustodyBox[1].row;
+    				for (var index in row){	
+    				if($('#box option:selected').val() == ((row[index].SIGUN_NM))){  
+    				
+    				let boxsize=row[index].SPACE_CNT_INFO.replace("01/", "소형:").replace("01/", "소형:").replace("02/",
+                    "중형:").replace("03/", "중소형:").replace("04/", "제어부:").replace("05/", "구급함:").replace("+", " & ")
+                    .replace("+", " & ").replace("+", " & ").replace("+", " & ");
+    				
+    			    document.getElementById("txtdata").innerHTML += "<tr><td>" + row[index].FACLT_NM+"</td><td>"
+    			    +row[index].REFINE_ROADNM_ADDR+"</td><td>"+boxsize 
+    			    +"</td><td>"+row[index].DATA_STD_DE + "</td></tr>";
+    				}
+            		}
+					},
+					error:function(xhr){
+						alert(xhr.status); //404 , 500
+					}
+					 ,beforeSend:function(){
+					      $('.wrap-loading').removeClass('display-none');
+					}
+					    ,complete:function(){
+					        $('.wrap-loading').addClass('display-none');
+					    }
+        		});
+        	});
+        });
+	</script>
+	<style type="text/css">
+		.wrap-loading div {
+		position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+		}
+		.display-none{
+        display:none;
+    	}
+	</style>
+</head>
+<body>
+<div class="wrap-loading">
+<div><img src="ajax-loader.gif" /></div>
+</div>
+<h3>택배 검색하기</h3>
+<!-- <button onclick="sendData()">검색하기</button> -->
+<select name="box" id="box">
+<option value="0000">지역 선택하기</option>
+<option value="의정부시">의정부시</option>
+<option value="구리시">구리시</option>
+<option value="평택시">평택시</option>
+<option value="수원시">수원시</option>
+<option value="과천시">과천시</option>
+<option value="양주시">양주시</option>
+<option value="고양시">고양시</option>
+<option value="광명시">광명시</option>
+<option value="의왕시">의왕시</option>
+<option value="화성시">화성시</option>
+</select>
+
+<table class="table table-bordered table-hover">
+<thead class="table-primary">
+<tr>
+<th>시설명</th>
+<th>소재지도로명주소</th>
+<th>칸개수</th>
+<th>데이터기준일자</th>
+</tr>
+<tbody id="txtdata" >
+
+</tbody>
+</table>
+
+</body>
+</html>

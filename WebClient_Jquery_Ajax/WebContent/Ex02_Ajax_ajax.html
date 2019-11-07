@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('#message').click(function() {
+		
+		jQuery.ajax( 
+				{ 
+					url: "Ex02_menu.html",
+					dataType:"html", //서버가 응답하는 형식이 html
+					success:function(responsedata) {  //파라미터로 서버가
+						//서버가 응답한 상태가 200-299사이값이라면 
+						//responsedata가 서버가 응답한 데이터를 받는다 
+						$('#menudiv').html($(responsedata).find('li')); //li태그만 뽑는다 
+					
+					}				
+				}
+				
+		); //호출 
+	});
+});
+
+/* Lowelevle Interface 비동기 함수 : (jquery.ajax(), $.ajax())
+ * (개발자가 원하는 모든 형태의 비동기 코드 구현: 상세 구현) 
+ *  jQuery.ajax( url [, settings ] )
+ url: 요청 주소
+ * settings: 여러가지 옵션 구현 > json 객체 > {}
+ dataType: 서버가 클라이언트한테 응답하는 데이터의 형식을 맞춰준다 
+ (Text(json,script,html,text),xml)
+ 
+ 1.responseText > text
+ 2.responseXML > xml 
+ 
+ */
+</script>
+</head>
+<style>
+	#menudiv {
+	width:300px;
+	height:300px;
+	margin:3px;
+	float:left;
+	background-color: gold;
+	}
+</style>
+<body>
+	<div id="menudiv">
+	 <a href="#" id="menu1"></a>		
+	</div>
+	<span id="message">클릭하세요</span>
+</body>
+</html>

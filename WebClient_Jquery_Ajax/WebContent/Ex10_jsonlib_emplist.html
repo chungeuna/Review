@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>Insert title here</title>
+	<script type="text/javascript">;
+			  $(function() {
+		        		$.ajax({
+		        		//	url:"http://192.168.0.76:8090/WebClient_Jquery_Ajax/Ex10_jsonlib_emplist.jsp",
+		        			url: "Ex10_jsonlib_emplist.jsp",
+		        			type:"POST",
+		        		 // dataType:"json",  
+		        		    success :function(data){
+		        		    	console.log(data);
+		        		    	$('#menu').text(data); 
+		        		    	
+		        		    },
+							error:function(xhr){
+								alert(xhr.status); //404 , 500
+							}
+		        		});	
+		        });
+	</script>
+</head>
+<body>
+<!-- 제이쿼리 비동기 함수 중에서 $.ajax() 함수 사용 Ex10_jsonlib_emplist.jsp가 요청 주소를 가지고 받은 데이터를 출력하라  -->
+<div id="menu">
+</div>
+</body>
+</html>
