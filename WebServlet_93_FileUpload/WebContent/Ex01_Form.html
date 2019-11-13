@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>파일 업로드(enctype)</title>
+<!-- 파일 업로드: 폼태그,post 
+enctype : 인코딩 타입 > 파일과 텍스트 과 나눠서 전달이 된다 (무조건) 
+enctype="multipart/form-data"
+서버가 데이터 받는 유일한 방법: request 객체 
+cos.jar > request 대체하는 객체 제공 > multipart 객체 
+스트림 안받아도 파일처리 
+폴더가 필요 > upload가  
+개발코드 > was서버 > 실경로: -->
+</head>
+<body>
+	<form action="Ex02_upload.jsp" method="post" enctype="multipart/form-data">
+		write: <input type="text" name="name"><br>
+		title: <input type="text" name="title"><br>
+			   <input type="hidden" name="hid" value="hello"><br>
+		file1 : <input type="file" name="filename1"><br>	   
+		file2 : <input type="file" name="filename2"><br>
+		
+				<input type="submit" value="파일 업로드">
+	</form>
+</body>
+</html>

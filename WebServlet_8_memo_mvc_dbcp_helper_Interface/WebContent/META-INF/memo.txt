@@ -1,0 +1,61 @@
+원칙) Model2 기반의 MVC 패턴 사용 프로젝트
+Model  (DTO , DAO)
+View (JSP)
+Controller(Servlet)
+
+지금 servlet 연습 ...
+JSP 파일 사용하지 않고 DB작업 (servlet 가지고 웹 서비스 )
+
+create table memo(
+id varchar2(15) not null,
+email varchar2(20) not null,
+content varchar2(100)
+);
+
+DB 작업 : ojdbc6.jar 파일 
+
+==============================
+Model2 기반의 MVC 패턴 웹 프로젝트 
+
+DB Table 설계 
+
+
+Model : (순수한 자바 파일) >> DTO(VO,DOMAIN) (데이터를 담을 수 있는 클래스 1건 )
+					   >> DAO(Data Access Object) : DB연결 CRUD 작업을 할 수 있는 함수를 가지고 있는 클래스 
+					   >> select, update, insert, delete 
+					   >>>> select(2개 함수: 전체, 조건),update,insert,delete  
+View: JSP (EL & JSTL) 
+
+연습용: 요청마다 controller 제작 실습 
+Controller: Servlet(요청 받기 : 주소) >> 요청을 받아서 업무에 따라서 (Model & View) 제어 
+
+웹 경로
+
+ [ jsp 파일 ]
+ 
+ <h3>GET 방식 요청</h3>
+	<a href="<%= request.getContextPath()%>/Login.do?id=hong">로그인</a>
+	<hr>
+	<h3>POST 방식 요청</h3>
+	<form action="<%=request.getContextPath()%>/Login.do" method="post">
+		<input type="text" name="id">
+		<input type="submit" value="로그인">	
+</form>
+ 
+ 
+[ html  ] 원칙적으로 서버요청 경로에  / 붙이지 않는다
+
+1. <a href="/MemoList">목록보기</a>   >>>>   localhost:8090/MemoList
+ 
+2. <a href="MemoList">목록보기</a>    >>>>   localhost:8090/WebServlet_3/MemoList
+
+
+3. <a href="/member/MemoList">목록보기</a> >>>> localhost:8090/member/MemoList
+
+4. <a href="member/MemoList">목록보기</a>  >>>> localhost:8090/WebServlet_3/member/MemoList
+
+5.
+<form name="f" action="/MemoServlet" method="get">  localhost:8090/MemoServlet
+
+<form name="f" action="MemoServlet" method="get">  localhost:8090/WebServlet_3/MemoServlet
+
