@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--  
+ JobExecute jobexecute = new JobExecute("hong",100);
+		// JobExecute jobexecute2 = new JobExecute("hong",100L);
+		// JobExecute jobexecute3 = new JobExecute("hong","kim");
+		
+ ArticleDao articledao = new ArticleDao();
+		 jobexecute.setArticledao(articledao);  //생성자 주입 
+		 jobexecute.setData(500); //setter로 주입  -->
+<bean id="articleDao" class="DI_08_Spring.ArticleDao"></bean>
+<bean id="jobExecute" class="DI_08_Spring.JobExecute">
+	<constructor-arg ><value >hong</value></constructor-arg>
+	<constructor-arg ><value type="long">100</value></constructor-arg>
+	<!--  타입을 명시하지 않는 것은 모든 값은 문자열  bean이  setter를 통해서 주입  -->
+	<property name="articledao">
+		<ref bean="articleDao"/>
+	</property>
+	
+	<property name="data">
+		<value>400</value>
+	</property>
+</bean>
+
+</beans>
+
+

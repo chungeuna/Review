@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<context:annotation-config/>
+
+<context:component-scan base-package="kr.or.bit.controller"/>
+
+<!-- <bean class="dao.NoticeDao"></bean> -->
+
+	
+<!-- 게시판 구현 -->
+<!-- <bean id="newNoticeDao" class="dao.NewNoticeDao"></bean> -->
+<!--  회원 구현  -->
+<!-- <bean id="newMemberDao" class="dao.NewMemberDao"></bean> -->
+
+
+<!-- <bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ <property name="viewClass" 
+     value="org.springframework.web.servlet.view.tiles2.TilesView" />
+</bean>  -->
+<!-- index controller  
+ return "index.jsp";
+ 
+ 이후 
+   return "customer.notice";
+    이 값을 주소 형태로 인지하겠다 > "customer.notice" 주소로 ...  urlBasedViewResolver :  
+  Tiles 
+	Tiles 와 매핑 
+	<definition name="*.*" > 
+	*> customer >>  {1} >> customer 
+	*> notice >> {2} >> notice 
+	
+	a.b.c.d 
+	<definition name="*.*.*.*" > 
+	a 추출 {1} 
+	
+   -->
+<!--  Tiles 설정 END --> 
+
+
+</beans> 
+
+

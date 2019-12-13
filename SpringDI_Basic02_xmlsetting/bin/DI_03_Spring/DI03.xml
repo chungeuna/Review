@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+Spring 자신만의 컨테이너 제공 (ioc 컨테이너(Spring 전용 메모리 공간) inversion of control) 
+[객체를 만들고 조립(관계 ... 의존성)] 설정
+
+>> DIConfig.xml  문서를 read 해서 ... 안에 있는 코드를 먼저 실행 
+>> xml 파일은 컨테이너를 구성하는 객체를 생성하고 의존을 설정하는 파일 
+또는 어노테이션 통해서 컨테이너 자원 구성 
+
+: 제어의 역전(프로그램의 제어구조를 바꾼다)
+작은 단위의 클래스 부품들을 먼저 만들고 그것을 조립하는 행위 
+
+//자바 코드
+NewRecordView view = new NewRecordView(); //객체 생성하기 
+NewRecord record = new NewRecord();
+
+view.setRecord(record); //객체 주입 DI 
+
+위 같은 형태를 코드를 자바코드가 아닌 [설정]을 통해서 작업 
+ * 설정 = 어노테이션 혹은 xml  
+ 
+private NewRecord record;
+public void setRecord(Record record) { 
+		this.record = (NewRecord)record;
+	} 
+
+자바객체 == bean
+
+NewRecordView view = new NewRecordView();
+NewRecord record = new NewRecord();
+view.setRecord(record); 
+클래스만 제공하면 객체 만들고 주입하는 것을 xml에서 담당할 것이다 
+
+프로퍼티 == setter 
+name : setter를 구현하고있는 멤버필드명 
+
+** property name은  setter 구현하는 memberfield의 이름을 사용 
+** setRecord() 의 >> private NewRecord record;
+
+//MessageBean_en messagebean_en = new MessageBean_en();
+//messagebean_en.sayHello("hong");
+		
+//한글 
+//MessageBean_kr messagebean_kr = new MessageBean_kr();
+//messagebean_kr.sayHello("hong");
+
+MessageBean messagebean_kr = new MessageBean_kr();
+messagebean_kr.sayHello("hong");
+ -->
+	<bean id="message" class="DI_03_Spring.MessageBean_kr"></bean>
+</beans>

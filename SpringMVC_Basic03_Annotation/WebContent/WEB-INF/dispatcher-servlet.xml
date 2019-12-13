@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+<!--  
+xml 파일
+IOC 컨테이너에 적재될 bean 객체 생성과 injection (DI)
+-->
+<!-- 
+	의존 관계에 필용한 빈 객체 자동 생성
+	@Autowired , @Resource 동작하기 위한 빈객체 .....
+	
+	**** <context:component-scan base-package="com.controller" /> *****
+	선언부에 있으면
+	@Component
+	@Repository
+	@Service
+	@Controller
+	
+	annotation 을 가진 class 에 대해서 
+	<bean id=""> 별도로 생성할 필요 없다
+	자동으로 빈 객체 생성 됩니다 
+	***********************************************
+ -->
+ <context:annotation-config/>
+ <!--  공통 빈 -->
+ <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix">
+		<value>/WEB-INF/views/</value>
+	</property>
+	<property name="suffix">
+		<value>.jsp</value>
+	</property>
+</bean>
+
+
+
+<!-- test 1 -->
+<bean id="" class="com.controller.HelloController"></bean>
+<!--  test 2 -->
+<!-- 하나의 요청 주소를 가지고 전송방식으로 구분하기 
+전송방식 : get / post 방식으로 들어오냐에 따라서 화면단,처리단 
+전제조건 : 요청 주소는 같다  -->
+<bean class="com.controller.NewArticleController"></bean>
+<bean class="com.service.ArticleService"></bean>
+<!--  test 3 List<Item> 설정 -->
+<bean class="com.controller.OrderController"></bean>
+<!--  test 4 파라미터 설정하기(@RequestParam) -->
+<bean class="com.controller.SearchController"></bean>
+<!--  test 5  @CookieValue 사용하기-->
+<bean class="com.controller.CookieController"></bean>
+<!--  test 6 파일 업로드하기 -->
+<!--  import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import  org.springframework.web.multipart.commons.CommonsMultipartFile; 
+
+CommonsMultipartFile을 사용하기 위해서는 CommonsMultipartResolver 객체가 
+IOC 컨테이너 안에 빈 객체로 생성되어 있어야 한다
+
+CommonsMultipartResolver: 업로드한 파일에 대한 정보 관리(크기, 이름....) 
+
+리졸버가 의존객체가 필요하다  (반드시) (내부적으로 파일을 읽고 쓰는 작업이 필요하기 때문에) 
+com.springsource.org.apache.commons.fileupload-1.2.0
+com.springsource.org.apache.commons.io-1.4.0
+
+-->
+<bean class="com.controller.ImageController"></bean>
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="10485760"></property> <!--최대 10 메가  -->
+</bean>
+</beans> 
+
+

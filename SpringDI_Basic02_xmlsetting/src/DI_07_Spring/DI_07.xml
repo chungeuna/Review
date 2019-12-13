@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!-- 
+ProtocolHandler handler = new ProtocolHandler();
+List<MyFilter> list = new ArrayList<MyFilter>();
+		list.add(new EncFilter());
+		list.add(new HeaderFilter());
+		list.add(new ZipFilter());
+		
+		handler.setFilters(list);	
+		
+		1단계 
+		필요한 bean은 모두 생성해라 (new 자원 bean 생성) 
+		사용자가 직접 만들지 않은 클래스(JAVA API) 제공 클래스(collection) 
+		Bean 생성 
+		xml 안에서 제공 
+		<list> <map> <set> 
+ -->
+<!--1. 각각 new 한 방법이다 > encFilter는 재사용하지 않는데 굳이 이렇게 할 필요가 있을까   -->
+<!-- <bean id="encFilter" class="DI_07_Spring.EncFilter"></bean>
+<bean id="headerFilter" class="DI_07_Spring.HeaderFilter"></bean>
+<bean id="zipFilter" class="DI_07_Spring.ZipFilter"></bean>
+<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+	<property name="filters">
+		<list>  id 속성 사용하지 않아요
+			<ref bean= "encFilter"/>
+			<ref bean= "headerFilter"/>
+			<ref bean= "zipFilter"/>
+		</list>
+	</property>
+</bean> -->
+
+
+<bean id="handler" class="DI_07_Spring.ProtocolHandler">
+<property name="filters">
+		<list>  <!-- id 속성을 쓸 필요없다 > 다른 곳에서 ref 하지 않기 때문에  -->
+			<bean class="DI_07_Spring.EncFilter"></bean>
+			<bean class="DI_07_Spring.HeaderFilter"></bean>
+			<bean class="DI_07_Spring.ZipFilter"></bean>
+		</list>
+	</property>
+</bean>
+
+</beans>
+
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.bit.dao.EmpDaoInterface">
+<!-- 
+public int insertEmp(Emp emp);
+
+	public Emp getEmpByEmpno(int no);
+	
+	public List<String> getJobRegister(); 
+	
+	public boolean checkAdminLogin(String userid, String pwd); 
+
+	public List<Emp> getEmps(); 
+	
+	public int deleteEmpByEmpno(int empno);
+
+	public int updateEmp(Emp emp); 
+
+	public List<TotalSaleryChart> ChartDataByTotalSalery(int count);
+
+	public List<DataByYear> dataByYear(); 
+
+	public List<Integer> getDethNos(); 
+	
+	public List<AvgMaxMinSalaryByDept> ChartSalByDept(); 
+
+	public List<LocDept> LocChart();
+	
+	public List<StatisticsByMgr> statisticsByMgr();
+ -->
+<select id="checkAdminLogin" resultType="String">
+      SELECT USERID FROM ADMINLIST WHERE USERID=#{param1} AND PWD=#{param2}
+</select>
+<insert id="insertEmp" parameterType="kr.or.bit.dto.Emp">
+INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, IMAGEFILENAME)
+ VALUES(#{empno}, #{ename}, #{job}, #{mgr}, #{hiredate}, #{sal}, #{comm}, #{deptno}, #{imagefile})
+</insert>
+<select id="getEmpByEmpno" resultType="kr.or.bit.dto.Emp">
+SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO , IMAGEFILENAME FROM EMP WHERE EMPNO=#{empno}
+</select>
+<select id="getJobRegister" resultType="kr.or.bit.dto.Emp">
+select distinct job from emp
+</select>
+
+<select id="getEmps" resultType="kr.or.bit.dto.Emp">
+SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO FROM EMP
+</select>
+<delete id="deleteEmpByEmpno" >
+DELETE FROM EMP WHERE EMPNO = #{empno}
+</delete>
+<update id="updateEmp" parameterType="kr.or.bit.dto.Emp">
+UPDATE EMP SET ENAME=#{ename}, JOB=#{JOB}, MGR=#{mgr}, HIREDATE=#{hiredate}, 
+SAL=#{sal}, COMM=#{comm}, DEPTNO=#{deptno}, IMAGEFILENAME=#{IMAGEFILENAME} WHERE EMPNO=#{empno}
+</update>
+
+</mapper>

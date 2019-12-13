@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context.xsd">
+<!-- 
+xsd: 스키마 파일 > 문법 저장하고있는 파일
+1. DataSourceFactory 빈 객체 생성 
+2. jdbc.properties 파일을 read한 값을 주입 
+3. DataSoruceFactory setter 통해서 주입 
+
+KEY POINT 
+xml 설정 파일에서 특정 [파일]을 read 하려면 스프링이 제공하는 context 자원 사용  
+
+xmlns:context="http://www.springframework.org/schema/context"
+문법적 강제 사항 ... 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context.xsd
+
+context 라는 접두어를 사용해서 element 생성할 수 있다 
+ -->
+	<context:property-placeholder location="classpath:DI_11_Spring/jdbc.properties"/> 
+	<!-- 위치를 찾는 엘리먼트  / 프로퍼티 파일의 경로를 준다 > 경로는 /으로 구분   
+	로케이션 속성을 이용해서 특정 파일에 접근한다  접근해서 이용해야한다 -->
+	<bean id="dataSourceFactory" class="DI_11_Spring.DataSourceFactory">
+		<property name="jdbcDriver" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+	</bean>
+	<!--  패키지명은 . 으로 쓴다 -->
+	<!--  key값을 value로 넣는다  -->
+</beans>
+
+
